@@ -5,7 +5,7 @@
   <style>
     #fake-push {
       position: fixed;
-      bottom: 20px;
+      top: 20px; /* changed from bottom to top */
       right: 20px;
       width: 320px;
       background: #fff;
@@ -19,8 +19,8 @@
       animation: slidein 0.4s ease;
     }
     @keyframes slidein {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
     #fake-push img {
       width: 36px;
@@ -47,7 +47,7 @@
 </head>
 <body>
 
-<button onclick="showPush()">Show Fake PayPal Notification</button>
+<button onclick="startNotifications()">Start Notifications</button>
 
 <div id="fake-push">
   <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png">
@@ -59,12 +59,25 @@
 </div>
 
 <script>
+  let count = 0;
+
   function showPush() {
     const box = document.getElementById('fake-push');
     box.style.display = 'block';
     setTimeout(() => {
       box.style.display = 'none';
-    }, 8000); // Hide after 8 seconds
+    }, 3000); // Show for 3 seconds
+  }
+
+  function startNotifications() {
+    const interval = setInterval(() => {
+      if (count >= 10) {
+        clearInterval(interval);
+        return;
+      }
+      showPush();
+      count++;
+    }, 4000); // Every 4 seconds (3 sec show + 1 sec gap)
   }
 </script>
 
