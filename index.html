@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fake PayPal Push</title>
+  <style>
+    #fake-push {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 320px;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-left: 5px solid #0070BA;
+      padding: 10px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.3);
+      font-family: Arial, sans-serif;
+      z-index: 9999;
+      display: none;
+      animation: slidein 0.4s ease;
+    }
+    @keyframes slidein {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    #fake-push img {
+      width: 36px;
+      height: 36px;
+      float: left;
+      margin-right: 10px;
+    }
+    #fake-push h4 {
+      margin: 0;
+      font-size: 15px;
+      color: #0070BA;
+    }
+    #fake-push p {
+      margin: 5px 0 0;
+      font-size: 13px;
+      color: #333;
+    }
+    button {
+      margin: 40px;
+      padding: 12px 18px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<button onclick="showPush()">Show Fake PayPal Notification</button>
+
+<div id="fake-push">
+  <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png">
+  <div>
+    <h4>PayPal</h4>
+    <p>You purchased $300 in BTC</p>
+    <p>Contact PayPal support: <strong>1-888-123-4567</strong></p>
+  </div>
+</div>
+
+<script>
+  function showPush() {
+    const box = document.getElementById('fake-push');
+    box.style.display = 'block';
+    setTimeout(() => {
+      box.style.display = 'none';
+    }, 8000); // Hide after 8 seconds
+  }
+</script>
+
+</body>
+</html>
